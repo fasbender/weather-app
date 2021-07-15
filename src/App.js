@@ -5,10 +5,11 @@ import './App.css';
 function App() {
 
   const [weather, setWeather] = useState([])
+  const [search, setSearch] = useState("")
 
   const Weather = async() => {
     try {
-      const temp = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&APPID=dac242caca04bcb5e721534038fb57bd`)
+      const temp = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Dhaka&units=metric&APPID=SECRET`)
       setWeather(temp.data.main) 
     } catch (error) {
       console.log(error)
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      
+      {weather.temp}
     </div>
   );
 }
