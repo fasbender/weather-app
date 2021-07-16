@@ -6,31 +6,20 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
+import { Divider } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 345,
     background: "#424242",
-    color: "#ffffff"
+    color: "#ffffff",
+    textAlign: "center",
+    margin: "auto"
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
 }));
 
@@ -44,15 +33,17 @@ export default function RecipeReviewCard({Weather, weather, search, setSearch, t
         subheader={weather.name && date(new Date())}
       />
       <CardMedia
+        style={{height: 400}}
         className={classes.media}
         image={temperature.temp > 16 ? `${process.env.PUBLIC_URL}/images/warm-bg.jpg` : `${process.env.PUBLIC_URL}/images/cold-bg.jpg`}
         title="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" component="p">
-             {temperature.temp}{temperature.temp && <span>&#x2103;</span>}
+             {Math.round(temperature.temp)}{temperature.temp && <span>&#x2103;</span>}
         </Typography>
       </CardContent>
+      <Divider/>
       <CardActions disableSpacing>
         <TextField style={{width: '100%'}} id="standard-basic" label="Search..." onChange={(e) => setSearch(e.target.value)} onKeyPress={Weather} value={search}/>
       </CardActions>
